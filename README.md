@@ -1,2 +1,0 @@
-# ArtiNote
-Created with CodeSandbox
