@@ -1,3 +1,3 @@
 # ArtiNote
  
-https://737fj.csb.app/
+ https://i8p8y.csb.app/
