@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import Fab from "@material-ui/core/Fab";
+import Zoom from "@material-ui/core/Zoom";
+import AddIcon from "@material-ui/icons/Add";
 
 function CreateArea(props) {
   const [inputText, setInputText] = useState({
     title: "",
     content: ""
   });
+
+  const [zoomBtn, setZoomBtn] = useState(false);
+  const [noteSize, setnoteSize] = useState("1");
 
   function handleChange(event) {
     const { value, name } = event.target;
@@ -25,28 +31,40 @@ function CreateArea(props) {
     });
   }
 
+  function handleBtnclick() {
+    setZoomBtn(true);
+    setnoteSize("3");
+  }
+
   return (
     <div>
-      <form>
-        <input
-          onChange={handleChange}
-          placeholder="Title"
-          type="text"
-          name="title"
-          value={inputText.title}
-        />
+      <form className="create-note" onClick={handleBtnclick}>
+        {zoomBtn && (
+          <input
+            onChange={handleChange}
+            placeholder="Title"
+            type="text"
+            name="title"
+            value={inputText.title}
+          />
+        )}
+
         <textarea
           onChange={handleChange}
           placeholder="Take a note..."
           name="content"
-          rows="3"
+          rows={noteSize}
           type="text"
           value={inputText.content}
         />
-
-        <button onClick={submitNote}>
-          <span>Add</span>
-        </button>
+        <Zoom in={zoomBtn}>
+          <Fab onClick={submitNote}>
+            <span>
+              {" "}
+              <AddIcon />{" "}
+            </span>
+          </Fab>
+        </Zoom>
       </form>
     </div>
   );
